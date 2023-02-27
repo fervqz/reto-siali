@@ -1,0 +1,9 @@
+@tailwind components;
+
+@layer components {
+
+    .card {
+        @apply bg-white p-3 border-2 rounded-lg min-h-[28rem] max-h-[28rem];
+    }
+
+}

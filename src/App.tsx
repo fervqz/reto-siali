@@ -1,25 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PageLayout from "./components/Layout/LayoutPage";
+import routes from "./routes/routes";
+import { AppRoute } from "./types/AppRouter";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PageLayout>
+      <BrowserRouter>
+        <Routes>
+          {routes.map((route: AppRoute) => <Route {...route} key={route.path} />)}
+        </Routes>
+      </BrowserRouter>
+    </PageLayout>
   );
 }
 
