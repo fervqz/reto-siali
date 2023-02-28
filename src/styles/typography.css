@@ -11,7 +11,7 @@
     }
 
     .text-mutted {
-        @apply text-xs text-gray-400;
+        @apply text-xs text-mutted-300;
     }
 
 }

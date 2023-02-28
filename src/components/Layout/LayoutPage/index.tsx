@@ -6,7 +6,7 @@ interface Props {
 
 const PageLayout: React.FC<Props> = (props: Props) => {
     return (
-        <header>
+        <header className="text-almostblack-300">
             {/* Background */}
             <div className="absolute bg-white h-[23rem] border-b-2 w-full z-10"></div>
 

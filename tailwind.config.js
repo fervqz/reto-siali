@@ -7,9 +7,15 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          300: '#AF8BC5',
+          300: '#9F86C0',
           400: '#8E63A8',
         },
+        mutted: {
+          300: '#767676',
+        },
+        'almostblack': {
+          300: '#111315'
+        }
       }
     },
   },

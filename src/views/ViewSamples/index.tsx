@@ -8,7 +8,7 @@ const ViewSamples: React.FC = () => {
             <div className="grid md:grid-cols-12 md:gap-5 grid-cols-1 py-10 px-6 md:px-0">
                 <div className="col-start-3 col-span-8">
                     <h1 className="title">Examinar una nueva muestra.</h1>
-                    <p>Para evaluar una nueva muestra, importa un stack de fotos o utiliza uno de los antiores.</p>
+                    <p>Para evaluar una nueva muestra, importa un stack de fotos o utiliza uno de los anteriores.</p>
                 </div>
             </div>
 

@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
                                 to={item.to}
                                 className={({ isActive }) =>
                                     `navbar-item ${isActive
-                                        ? 'border-black'
+                                        ? 'border-almostblack-300 text-almostblack-300'
                                         : 'border-transparent'
                                     }`
                                 }

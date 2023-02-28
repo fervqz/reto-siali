@@ -3,7 +3,7 @@
 @layer components {
 
     .navbar-item {
-        @apply mt-auto py-1 mr-10 mb-6 border-b-2 text-gray-600 hover:text-black;
+        @apply mt-auto py-1 mr-10 mb-6 border-b-2 text-gray-600 hover:text-almostblack-300;
     }
 
 }

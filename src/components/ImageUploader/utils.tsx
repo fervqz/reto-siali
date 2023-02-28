@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+
 export const Spinner: React.FC = () => {
     return (
         <div role="status" className="flex flex-col relative items-center py-40 justify-center w-full h-full">
@@ -10,15 +14,31 @@ export const Spinner: React.FC = () => {
 }
 
 interface Props {
-    icon: any;
-    text: string;
+    isSucess: boolean | undefined;
 }
 
 export const Message: React.FC<Props> = (props: Props) => {
+
+    useEffect(() => {
+        if (props.isSucess !== undefined) {
+
+        }
+    }, []);
+
     return (
-        <section className='flex flex-col relative items-center py-36 justify-center w-full h-full'>
-            {props.icon}
-            <h3 className="mt-4 text-lg font-semibold mb-2">{props.text}</h3>
+        <section className='flex flex-col relative items-center py-20 justify-center w-full h-full'>
+            {
+                props.isSucess
+                    ? <CheckCircleOutlineOutlinedIcon className="text-primary-300" sx={{ fontSize: '100px' }}/>
+                    : <CancelOutlinedIcon className="text-red-500" sx={{ fontSize: '100px' }}/>
+            }
+            <h3 className="mt-4 text-lg mb-2">
+                {
+                    props.isSucess
+                        ? 'Muestra importada correctamente'
+                        : 'Hubo un error al importar la muestra'
+                }
+            </h3>
             <button
                 onClick={() => window.location.reload()}
                 className="py-1 px-3 mt-6 rounded bg-primary-300 hover:bg-primary-400"

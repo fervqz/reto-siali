@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
 @import './styles/typography.css';
 @import './styles/card.css';
 @import './styles/input.css';
 @import './styles/navbar.css';
 @import './styles/image-uploader.css';
 
+* {
+    font-family: 'Mukta', sans-serif;
+}
+
 html {
-    background-color: #EFEFEF;
+    background-color: #EDEDED;
 }

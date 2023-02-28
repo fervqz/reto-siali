@@ -15,10 +15,7 @@ const ImageUploader: React.FC = () => {
     const [hasUnsupportedFile, setHasUnsupportedFile] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [sended, setSended] = useState<boolean>(false);
-    const [message, setMessage] = useState<{ icon: any, text: string }>({
-        icon: <CheckCircleOutlineOutlinedIcon />,
-        text: 'Muestra importada correctamente'
-    });
+    const [isSucess, setIsSucess] = useState<boolean | undefined>(undefined);
 
     const onDrop = (files: any, filesRejections: any) => {
         !!filesRejections.length
@@ -37,19 +34,8 @@ const ImageUploader: React.FC = () => {
         }
 
         samplesService.uploadSamples(payload)
-            .then((res: AxiosResponse) => {
-                console.log(res.config);
-                setMessage({
-                    icon: <CheckCircleOutlineOutlinedIcon className='w-25 h-25' />,
-                    text: 'Muestra importada correctamente',
-                });
-            })
-            .catch((error: any) => {
-                setMessage({
-                    icon: <CancelOutlinedIcon className='w-25 h-25' />,
-                    text: 'Hubo un error al importar la muestra',
-                });
-            })
+            .then((res: AxiosResponse) => setIsSucess(true))
+            .catch((error: any) => setIsSucess(false))
             .finally(() => {
                 setSended(true);
                 setIsLoading(false);
@@ -85,8 +71,8 @@ const ImageUploader: React.FC = () => {
     return (
         <section>
             {
-                sended
-                    ? <Message {...message} />
+                isSucess !== undefined
+                    ? <Message isSucess={isSucess} />
                     : (isLoading
                         ? <Spinner />
                         : <div {...getRootProps({ className: 'dropzone' })}>
@@ -96,7 +82,7 @@ const ImageUploader: React.FC = () => {
                                 <h2 className="subtitle">Arrastrar y soltar imágenes</h2>
                                 <p className="text-mutted">JPG and PNG images - max 8 Mb por imagen</p>
                                 <input id="dropzone-file" {...getInputProps()} />
-                                <p className="mt-4"><span className="text-mutted">o</span>&nbsp;
+                                <p className="mt-4"><span className="text-mutted mr-3">o</span>
                                     <button type="button" onClick={open} className="image-uploader--button">Importar de tu ordenador</button>
                                 </p>
                                 <div className="absolute bottom-6 text-center">
