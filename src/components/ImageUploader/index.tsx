@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import samplesService from '../../services/samples.service';
 import UploadIcon from '../UploadIcon';
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { Message, Spinner } from './utils';
 import { ErrorFiles } from '../../types/ErrorFiles';
 

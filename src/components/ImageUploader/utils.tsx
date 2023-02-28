@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
@@ -18,19 +18,12 @@ interface Props {
 }
 
 export const Message: React.FC<Props> = (props: Props) => {
-
-    useEffect(() => {
-        if (props.isSucess !== undefined) {
-
-        }
-    }, []);
-
     return (
         <section className='flex flex-col relative items-center py-20 justify-center w-full h-full'>
             {
                 props.isSucess
-                    ? <CheckCircleOutlineOutlinedIcon className="text-primary-300" sx={{ fontSize: '100px' }}/>
-                    : <CancelOutlinedIcon className="text-red-500" sx={{ fontSize: '100px' }}/>
+                    ? <CheckCircleOutlineOutlinedIcon className="text-primary-300" sx={{ fontSize: '100px' }} />
+                    : <CancelOutlinedIcon className="text-red-500" sx={{ fontSize: '100px' }} />
             }
             <h3 className="mt-4 text-lg mb-2">
                 {
