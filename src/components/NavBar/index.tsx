@@ -1,7 +1,19 @@
+import { NavLink } from 'react-router-dom';
 import logoSiali from '../../assets/logo-siali.png';
 import { RoutePaths } from '../../types/RoutePaths';
 
+interface NavItem {
+    to: string;
+    title: string;
+}
+
 const NavBar: React.FC = () => {
+
+    const navItems: NavItem[] = [
+        { to: RoutePaths.SAMPLES, title: 'Muestras' },
+        { to: RoutePaths.CONFIGURATION, title: 'Configuración' },
+    ];
+
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2 p-3 ml-4">
@@ -9,12 +21,18 @@ const NavBar: React.FC = () => {
             </div>
             <div className="col-span-8 h-auto">
                 <ul className="flex text-lg font-semibold  h-full">
-                    <li className="flex items-bottom">
-                        <a href={RoutePaths.SAMPLES} className="mt-auto py-1 mr-10 mb-6 border-b-2 border-black text-black ">Muestras</a>
-                    </li>
-                    <li className="flex items-bottom">
-                        <a href={RoutePaths.CONFIGURATION} className="mt-auto py-1 mr-10 mb-6 text-gray-600 hover:text-black border-b-2 border-transparent hover:border-b-2 hover:border-black">Configuración</a>
-                    </li>
+                    {navItems.map((item: NavItem) => (
+                        <li className="flex items-bottom">
+                            <NavLink
+                                to={item.to}
+                                className={({ isActive }) =>
+                                    `navbar-item ${isActive ? 'border-black' : 'border-transparent'}`
+                                }
+                            >
+                                {item.title}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>

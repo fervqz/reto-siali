@@ -1,6 +1,7 @@
 @import './styles/typography.css';
 @import './styles/card.css';
 @import './styles/input.css';
+@import './styles/navbar.css';
 
 html {
     background-color: #EFEFEF;

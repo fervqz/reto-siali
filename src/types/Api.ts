@@ -11,4 +11,8 @@ export type ResponseCode =
 export interface ApiResponse {
     data: any;
     status: ResponseCode;
+    config?: any;
+    headers?: any;
+    request?: any;
+    statusText?: string;
 }
