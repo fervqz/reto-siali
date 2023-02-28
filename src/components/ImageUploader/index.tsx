@@ -38,6 +38,7 @@ const ImageUploader: React.FC = () => {
 
         samplesService.uploadSamples(payload)
             .then((res: AxiosResponse) => {
+                console.log(res.config);
                 setMessage({
                     icon: <CheckCircleOutlineOutlinedIcon className='w-25 h-25' />,
                     text: 'Muestra importada correctamente',

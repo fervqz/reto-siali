@@ -3,10 +3,10 @@ import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import SkeletoList from "../../components/Skeleton/SkeletonList";
 import samplesService from "../../services/samples.service";
-import { ApiResponse } from "../../types/Api";
 import { sortByDate } from "./utils";
 import Sample from '../../types/Sample';
 import moment from 'moment';
+import { AxiosResponse } from 'axios';
 
 const Searcher: React.FC = () => {
 
@@ -21,7 +21,7 @@ const Searcher: React.FC = () => {
 
     useEffect(() => {
         samplesService.getSamples()
-            .then((response: ApiResponse) => response.data.records)
+            .then((response: AxiosResponse) => response.data.records)
             .then((samples: Sample[]) => {
                 const sortedSamples = samples.sort((sampleA, sampleB) => sortByDate(sampleA.date, sampleB.date));
                 setSamples(sortedSamples);

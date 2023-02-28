@@ -7,12 +7,3 @@ export type ResponseCode =
     | 500 // Internal Server Error
     | 503 // Service Unavailable
     ;
-
-export interface ApiResponse {
-    data: any;
-    status: ResponseCode;
-    config?: any;
-    headers?: any;
-    request?: any;
-    statusText?: string;
-}
