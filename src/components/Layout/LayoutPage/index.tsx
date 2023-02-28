@@ -1,4 +1,3 @@
-import Loader from "../../Loader";
 import NavBar from "../../NavBar";
 
 interface Props {

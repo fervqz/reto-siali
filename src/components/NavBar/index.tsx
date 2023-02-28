@@ -22,11 +22,14 @@ const NavBar: React.FC = () => {
             <div className="col-span-8 h-auto">
                 <ul className="flex text-lg font-semibold  h-full">
                     {navItems.map((item: NavItem) => (
-                        <li className="flex items-bottom">
+                        <li className="flex items-bottom" key={item.to}>
                             <NavLink
                                 to={item.to}
                                 className={({ isActive }) =>
-                                    `navbar-item ${isActive ? 'border-black' : 'border-transparent'}`
+                                    `navbar-item ${isActive
+                                        ? 'border-black'
+                                        : 'border-transparent'
+                                    }`
                                 }
                             >
                                 {item.title}

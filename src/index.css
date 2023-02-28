@@ -2,6 +2,7 @@
 @import './styles/card.css';
 @import './styles/input.css';
 @import './styles/navbar.css';
+@import './styles/image-uploader.css';
 
 html {
     background-color: #EFEFEF;

@@ -47,7 +47,13 @@ const Searcher: React.FC = () => {
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <SearchOutlinedIcon className="h-5 w-5 inline text-gray-500" />
                 </div>
-                <input type="text" className="input-file" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value.toLocaleLowerCase())} placeholder="Buscar..." />
+                <input
+                    type="text"
+                    className="input-file"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value.toLocaleLowerCase())}
+                    placeholder="Buscar..."
+                />
             </div>
 
             <div className="border mt-4 border-gray-300 rounded-md min-h-72 max-h-72 overflow-auto">

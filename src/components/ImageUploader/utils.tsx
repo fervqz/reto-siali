@@ -19,7 +19,10 @@ export const Message: React.FC<Props> = (props: Props) => {
         <section className='flex flex-col relative items-center py-36 justify-center w-full h-full'>
             {props.icon}
             <h3 className="mt-4 text-lg font-semibold mb-2">{props.text}</h3>
-            <button onClick={() => window.location.reload()} className="py-1 px-3 mt-6 rounded bg-primary-300 hover:bg-primary-400">Importar otra muestra</button>
+            <button
+                onClick={() => window.location.reload()}
+                className="py-1 px-3 mt-6 rounded bg-primary-300 hover:bg-primary-400"
+            >Importar otra muestra</button>
         </section>
     );
 }

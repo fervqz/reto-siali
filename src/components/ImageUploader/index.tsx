@@ -6,13 +6,8 @@ import samplesService from '../../services/samples.service';
 import UploadIcon from '../UploadIcon';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined';
 import { Message, Spinner } from './utils';
-
-interface Error {
-    code: string;
-    message: string;
-}
+import { ErrorFiles } from '../../types/ErrorFiles';
 
 const ImageUploader: React.FC = () => {
 
@@ -25,60 +20,66 @@ const ImageUploader: React.FC = () => {
         text: 'Muestra importada correctamente'
     });
 
-    const onDrop = (files: any, error: any) => {
+    const onDrop = (files: any, filesRejections: any) => {
+        !!filesRejections.length
+            ? handleDropRejected(filesRejections)
+            : handleDropAccepted(files);
+    }
 
-        const errorCode = error[0]?.errors[0].code;
-        setHasLargerFile(false);
+    const handleDropAccepted = (files: any) => {
 
-        if (!!error && errorCode === 'file-too-large') {
-            setHasLargerFile(true);
-            return;
-        }
+        setIsLoading(true);
 
         const payload = {
             name: "New Stack",
-            date: moment().format('dd, DD MMM YYYY HH:mm:ss'), // Fri, 01 Jan 2010 00:00:00 GMT
-            img_stack: files
+            date: moment().format('dd, DD MMM YYYY HH:mm:ss'),
+            img_stack: files,
         }
 
-        console.log('PAYLOAD', payload);
-
-        setIsLoading(true);
         samplesService.uploadSamples(payload)
             .then((res: AxiosResponse) => {
-                console.log('RESPONSE', res);
                 setMessage({
                     icon: <CheckCircleOutlineOutlinedIcon className='w-25 h-25' />,
                     text: 'Muestra importada correctamente',
                 });
             })
             .catch((error: any) => {
-                console.log('ERROR', error);
                 setMessage({
                     icon: <CancelOutlinedIcon className='w-25 h-25' />,
                     text: 'Hubo un error al importar la muestra',
                 });
             })
             .finally(() => {
-                console.log('FINALLY');
                 setSended(true);
                 setIsLoading(false);
-            })
-
+            });
     };
+
+    const handleDropRejected = (fileRejections: any) => {
+
+        setHasLargerFile(false);
+        setHasUnsupportedFile(false);
+
+        const errors = fileRejections
+            .map((rejection: any) => rejection.errors)
+            .flat()
+            .map((item: any) => item.code);
+
+        setHasLargerFile(errors.includes(ErrorFiles.FILE_TOO_LARGE));
+        setHasUnsupportedFile(errors.includes(ErrorFiles.FILE_INVALID_TYPE));
+
+    }
 
     const { acceptedFiles, getRootProps, getInputProps, open } = useDropzone({
         onDrop,
+        onError: (error: any) => console.log('ERROR', error),
         maxSize: 8192000,
         multiple: true,
-        accept: { 'image/*': ['.jpg', '.png'], }
+        accept: {
+            'image/png': ['.png'],
+            'image/jpg': ['.jpg'],
+        },
     });
-
-    const files = acceptedFiles.map((file: any) => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
-        </li>
-    ));
 
     return (
         <section>
@@ -89,13 +90,13 @@ const ImageUploader: React.FC = () => {
                         ? <Spinner />
                         : <div {...getRootProps({ className: 'dropzone' })}>
                             <input {...getInputProps()} />
-                            <div className="flex flex-col relative items-center py-[5.2rem] justify-center w-full h-full cursor-pointer rounded-lg border-2 border-transparent border-dashed hover:bg-gray-100 hover:border-2 hover:border-gray-300">
+                            <div className="image-uploader--container">
                                 <UploadIcon />
                                 <h2 className="subtitle">Arrastrar y soltar imágenes</h2>
                                 <p className="text-mutted">JPG and PNG images - max 8 Mb por imagen</p>
                                 <input id="dropzone-file" {...getInputProps()} />
                                 <p className="mt-4"><span className="text-mutted">o</span>&nbsp;
-                                    <button type="button" onClick={open} className="bg-white py-2 px-4 border-2 border-gray text-xs rounded-sm font-semibold">Importar de tu ordenador</button>
+                                    <button type="button" onClick={open} className="image-uploader--button">Importar de tu ordenador</button>
                                 </p>
                                 <div className="absolute bottom-6 text-center">
                                     {hasLargerFile && <p className="text-red-400 text-xs">Solo se admiten archivos menores a 8 Mb</p>}

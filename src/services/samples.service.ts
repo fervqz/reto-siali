@@ -12,7 +12,11 @@ export default {
     ),
 
     uploadSamples: async (payload: any): Promise<AxiosResponse> => (
-        axios.post('https://httpbin.org/post', payload)
+        axios.post('https://httpbin.org/post', payload, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
     ),
 
 }
