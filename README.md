@@ -1,46 +1,107 @@
-# Getting Started with Create React App
+# Reto Siali
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Ejecución el código
 
-## Available Scripts
+Clonar el repo y ejecutar un `npm install`, luego ejcutar el código `npm start` en la carpeta raíz del proeycto.
 
-In the project directory, you can run:
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Estructura del proyecto
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+.
+└── src/
+    ├── assets/
+    ├── components/  # Componentes de la aplicación
+    ├── mock/        # Datos que simulan la respuesta de la API
+    ├── routes/      # Rutas de react-router-dom
+    ├── services/    # Centralización de funciones y llamadas a la API
+    ├── styles/      # Componentes de Tailwind
+    ├── types/       # Interfaces, Enums y Types de la aplicación
+    └── views/       # Pantallas de la aplicación
+```
 
-### `npm test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Parte 1
+### Requisitos
+> - Crea un nuevo proyecto de React usando `create-react-app`, `vite` o cualquier otra herramienta de tu elección.
+> - Instala las dependencias necesarias: `axios` y `react-dropzone`.
+> - Crea un componente llamado `ImageUploader` en un archivo llamado `ImageUploader.jsx`.
+> - Importa `react-dropzone` y `axios` dentro del componente `ImageUploader`.
+> - Crea un componente funcional llamado `ImageUploader` que renderice un componente de `react-dropzone` con los props necesarios para habilitar el drag and drop de archivos. Dentro del prop onDrop de `react-dropzone`, usa `axios` para enviar una solicitud POST a una API gratuita que acepte archivos. Puedes usar la API de pruebas de `httpbin.org` para esto.
+> - Muestra un mensaje de éxito o de error según la respuesta de la API.
 
-### `npm run build`
+El proyecto fue creado utilizando `create-react-app`, se instalaron las dependencias de `axios`, `react-router-dom`, `react-dropzone` y `tailwindcss`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+El componente funcional `ImageUploader` puede encontrarse en:
+```bash
+src/components/ImageUploader/index.tsx      # línea 10
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+La dependencia `react-dropzone` se utiliza en:
+```bash
+src/components/ImageUploader/index.tsx      # línea 58
+```
+La llamada axios se encuentra en el servicio `samplesService`:
+```bash
+src/services/samples.service.ts             # línea 14
+```
+Y el mensaje de éxito/error se encuentra en:
+```bash
+src/components/ImageUploader/utils.tsx      # línea 20
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `npm run eject`
+## Parte 2
+### Requisitos
+> - Crear un bloque de contenido con buscador y una lista de componentes que se cargan en este caso de un json.
+> - El boton de importar no tendra funcionalidad.
+> - El buscador solo buscara por fecha.
+> - Calcula el numero de dias transcurridos desde que se creo el stack y el dia actual y muestralo.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+El buscador se encuentra en el archivo:
+```bash
+src/components/Searcher/index.tsx           # línea 11
+```
+El búscador por fecha funciona de la siguiente forma:
+- Se puede buscar por fecha *human readable*, por ejemplo *hace 2 días, hace 3 meses*.
+- También se puede buscar por el valor original de la fecha, cuyo formato es `Fri, 01 Jan 2010 00:00:00 GMT`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Parte 3
+### Requisitos
+> - Dar estilo a la web para que se parezca lo mas posible a la imagen.
+> - La barra de navegación deberan ser link enlazados con un react-router
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Rutas de la aplicación
+```bash
+src/routes/routes.tsx                       # línea 8
+```
+Router
+```bash
+src/App.tsx                                 # línea 7
+```
+NavBar Links
+```bash
+src/components/NavBar/index.tsx             # línea 24
+```
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Estilos
+### Iconos
+- '@mui/icons-material/Science'
+- '@mui/icons-material/Search'
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Font family:
+- Mukta
+
+### Colors:
+- **primary:** #9F86C0
+- **textdark:** #111315
+- **textgray:** #767676
+- **background:** #EDEDED
